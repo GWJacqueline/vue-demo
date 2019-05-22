@@ -1,27 +1,21 @@
-# vue-blog
+# vue-pra
 
-## 安装依赖
+> A Vue.js project
 
-```
+## Build Setup
+
+``` bash
+# install dependencies
 npm install
-```
 
-### 开发环境
+# serve with hot reload at localhost:8080
+npm run dev
 
-```
-npm run serve
-```
-
-### 生产环境
-
-```
+# build for production with minification
 npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
 ```
 
-### 数据库：firebase
-
-### 异步加载：vue-resource
-
-### 实现功能
-
-用 Vue 实现个人博客的增，删，改，查，以及搜索。
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

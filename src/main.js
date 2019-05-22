@@ -1,54 +1,52 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
 import router from './router'
-import store from './store'
-import VueResource from 'vue-resource'
-
-Vue.use(VueResource)
-//全局自定义指令
-// 自定义指令 无值
-// Vue.directive('rainbow', {
-//   /*
-//     el：指令所绑定的元素，可以用来直接操作 DOM 
-//     binding：一个对象
-//     vnode：Vue 编译生成的虚拟节点
-//   */
-//   bind(el, binding, vnode) {
-//     el.style.color = '#' + Math.random().toString(16).slice(2, 8);
-//   }
-// });
-
-
-//自定义指令 有值
-Vue.directive('theme', {
-  bind(el, binding, vnode) {
-    if (binding.value == 'wide') {
-      el.style.maxWidth = "1260px";
-    } else if (binding.value == 'narrow') {
-      el.style.maxWidth = "500px";
-    };
-    if (binding.arg == 'column') {
-      el.style.backgroundColor = "#6677cc";
-      el.style.padding = '20px';
-    }
-  },
-});
-
-//全局自定义过滤器
-//自定义过滤器
-// Vue.filter('to-uppercase', function (value) {
-//   // value等于管道左边的值,这边等价于blog.title
-//   return value.toUpperCase();
-// });
-
-Vue.filter('snippet', function (value) {
-  return value.slice(0, 100) + '...'
-});
+import axios from 'axios'
+import './assets/css/bootstrap/bootstrap.min.css'
+import './assets/css/style.scss'
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios
+axios.defaults.headers.post['Content-type'] = 'application/json'
 
+// 全局守卫 
+/*
+全局守卫传的三个参数:
+to:要跳转到哪个组件里面去
+from:从哪个路由离开
+next:一个方法，决定是否要展示看到路由的页面
+ */
+// router.beforeEach 注册一个全局前置守卫，进入组件之前
+// router.beforeEach((to, from, next) => {
+//   //点击任何一个页面前，都会执行
+//   console.log(to);
+//   if (to.name == 'Login' || to.name == 'Register') {
+//     next();
+//   } else {
+//     alert("还没有登录，请先登录");
+//     //未登录就引导到登录页面上
+//     next('/Login');
+//   };
+// });
+
+/*
+全局后置钩子传两个参数:
+to:要去的组件
+from:离开的组件
+ */
+//router.afterEach 注册全局后置钩子，进入组件之后
+
+router.afterEach((to, from) => {
+  //进入组件后，展示出来
+  alert("after each");
+});
+
+/* eslint-disable no-new */
 new Vue({
+  el: '#app',
   router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+  components: { App },
+  template: '<App/>'
+})
