@@ -19,7 +19,6 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      //懒加载，也就是按需加载，推荐这种引入方式，会优化项目
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
   ]

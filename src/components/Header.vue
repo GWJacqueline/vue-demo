@@ -19,7 +19,7 @@ export default {
   name: "Header",
   data() {
     return {
-      msg: "待办事项",
+      msg: "待办事项Demo",
       routerItems: [
         {
           name: "主页",

@@ -1,51 +1,114 @@
 <template>
-  <div class="todo">
-    <p class="todo-item" v-for="(todo,index) in todos" :key="index">
-      <todoItem :todo="todo" @deleteItem="$emit('deleteItem',todo.id)"/>
-    </p>
+  <div>
+    <h3>待办事项列表</h3>
+    <div class="legend">
+      <span>双击表示完成</span>
+      <span>
+        <span class="incomplete-box"></span> = 未完成
+      </span>
+      <span>
+        <span class="complete-box"></span> = 已完成
+      </span>
+    </div>
+    <div class="todos">
+      <div
+        class="todo"
+        :class="{'is-complete':todo.completed}"
+        @dblclick="changeCompleted(todo)"
+        v-for="(todo,index) in todos"
+        :key="index"
+      >
+        {{todo.title}}/{{todo.completed}}
+        <i
+          class="fa fa-trash"
+          aria-hidden="true"
+          @click="asyncDeleteTodo(todo.id)"
+        ></i>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import todoItem from "../components/TodoItem";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 export default {
   name: "todo",
   data() {
     return {};
   },
-  props: {
-    todos: {
-      type: Array
-    }
+  computed: {
+    ...mapGetters(["todos"])
   },
   methods: {
-    deleteItem(id) {},
-    completed() {}
+    ...mapActions(["asyncGetTodo", "asyncDeleteTodo", "completed"]),
+    changeCompleted(todo) {
+      const newTodo = {
+        id: todo.id,
+        title: todo.title,
+        completed: !todo.completed
+      };
+      this.completed(newTodo);
+    }
   },
-  components: {
-    todoItem
+  created() {
+    this.asyncGetTodo();
   }
 };
 </script>
-<style lang="scss" scoped>
-.todo-item {
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-bottom: 1px #ccc dotted;
+<style scoped>
+.todos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
 }
-.is-completed {
-  text-decoration: line-through;
+
+.todo {
+  border: 1px solid #ccc;
+  background: #41b883;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
 }
-.del {
-  background-color: #ff0000;
+
+i {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   color: #fff;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  border: none;
-  outline: none;
-  float: right;
-  font-size: 16px;
-  line-height: 20px;
+  cursor: pointer;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.complete-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #35495e;
+}
+
+.incomplete-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #41b883;
+}
+
+.is-complete {
+  background: #35495e;
+  color: #fff;
+}
+
+@media (max-width: 500px) {
+  .todos {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
+

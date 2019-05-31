@@ -14,29 +14,15 @@ export default {
 };
 </script>
 <style lang="scss">
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.4;
-  color: #2c3e50;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: 1.6;
+  background: #e8f7f0;
 }
-.btn {
-  display: inline-block;
-  border: none;
-  background-color: #555;
-  color: #fff;
-  padding: 7px 20px;
-  cursor: pointer;
-  outline: none;
-  &:hover {
-    background-color: #666;
-  }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: auto;
+  padding: 0 2rem;
 }
 </style>
