@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Blog from './views/Blog'
-import SingleBlog from './components/SingleBlog'
-import EditBlog from './components/EditBlog'
+import Home from './views/Home.vue'
 
 Vue.use(Router)
 
@@ -12,25 +10,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Blog',
-      component: Blog
+      name: 'home',
+      component: Home
     },
     {
-      path: '/AddBlog',
-      name: 'AddBlog',
+      path: '/about',
+      name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/AddBlog.vue')
-    },
-    //路由参数
-    {
-      path: '/blog/:id',
-      component: SingleBlog,
-    },
-    {
-      path: '/edit/:id',
-      component: EditBlog,
-    },
+      //懒加载，也就是按需加载，推荐这种引入方式，会优化项目
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    }
   ]
 })

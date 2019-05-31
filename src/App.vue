@@ -1,29 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- exact样式唯一 -->
-      <router-link to="/" exact>博客</router-link>
-      <router-link to="/AddBlog" exact>写博客</router-link>
-    </div>
-    <router-view/>
+    <app-header></app-header>
+    <router-view></router-view>
   </div>
 </template>
-
-<style lang="scss">
-#nav {
-  text-align: center;
-  background: crimson;
-  padding: 30px 0;
-  margin-bottom: 40px;
-  a {
-    color: #fff;
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 5px;
+<script>
+import Header from "./components/Header";
+export default {
+  name: "App",
+  components: {
+    "app-header": Header
   }
-  .router-link-active {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #444;
+};
+</script>
+<style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.4;
+  color: #2c3e50;
+}
+.btn {
+  display: inline-block;
+  border: none;
+  background-color: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    background-color: #666;
   }
 }
 </style>
