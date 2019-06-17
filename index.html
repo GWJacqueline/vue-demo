@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Vue-MVVM实现原理模拟</title>
+        <script src="js/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div id="vue-app">
+            <div class="btnGroup">
+                <div>{{ mvvm }}</div>
+                <!-- <div>{{ a }}</div> -->
+                <div>{{ a.a }}</div>
+                <input v-model="mvvm" />
+                <p>{{ hero }}</p>
+            </div>
+        </div>
+        <script src="js/app.js"></script>
+        <!-- <script src="js/mode.js"></script> -->
+    </body>
+</html>
