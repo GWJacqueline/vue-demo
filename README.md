@@ -15,3 +15,5 @@
 ### 分支：vue-prop ----Vue 组件传值及注册事件实现待办事项 demo
 
 ### 分支：vuex-manage----Vuex 实现待办事项 demo
+
+### 分支：vue-mvvm --------Vue 实现原理（从零开始实现 Vue 中的单、双向数据绑定、computed）
